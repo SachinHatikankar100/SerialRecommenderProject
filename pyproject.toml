@@ -1,0 +1,24 @@
+[project]
+name = "SERIALS-RECOMMENDER"
+version = "0.1"
+description = "Serial recommendation system"
+authors = [
+  { name="Sachin Hatikankan" }
+]
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+"pandas",
+"streamlit",
+"langchain",
+"langchain-community",
+"langchain_groq",
+"langchain_huggingface",
+"chromadb",
+"sentence-transformers",
+"python-dotenv",
+] 
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
