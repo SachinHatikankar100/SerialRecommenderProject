@@ -8,17 +8,17 @@ class SerialDataLoader:
 
 
     def load_and_process(self):
-        df = pd.read_csv(self.original_csv,encoding="utf-8",error_bad_lines=False).dropna()
+        df = pd.read_csv(self.original_csv,encoding="utf-8",on_bad_lines='skip').dropna()
 
-        requiredColumns = {"Name","genre","overview"}
+        requiredColumns = {"Name","genres","overview"}
 
         missing = requiredColumns - set(df.columns)
         if missing:
             raise ValueError("Required column is missing in CSV file")
 
         df["combined_data"] = (
-            "Title"+df["Name"]+" Overview "+df["overview"]+" genre "+df["genre"]
+            "Title"+df["Name"]+" Overview "+df["overview"]+" genre "+df["genres"]
         )
 
-        df[["combined_data"]].csv(self.processed_csv,index=False,encoding="utf-8")
+        df[["combined_data"]].to_csv(self.processed_csv,index=False,encoding="utf-8")
         return self.processed_csv
